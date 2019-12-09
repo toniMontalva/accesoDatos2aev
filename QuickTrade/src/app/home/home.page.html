@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Vender artículo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+      <ion-label>Nombre</ion-label>
+      <ion-input placeholder="Nombre del artículo"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label>Descripción</ion-label>
+      <ion-input placeholder="Descripción del artículo"></ion-input>
+  </ion-item>
+
+  <!--
+  <ion-list>      
+    <ion-item>
+      <ion-label>Categoría</ion-label>
+      <ion-select placeholder="Selecciona Uno" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="tecnologia" (ionSelect)="categoria_Tecnologia()">Tecnología</ion-select-option>
+        <ion-select-option value="hogar" (ionSelect)="categoria_Hogar()">Hogar</ion-select-option>
+        <ion-select-option value="inmobiliaria" (ionSelect)="categoria_Inmobiliaria()">Inmobiliaria</ion-select-option>
+        <ion-select-option value="motor" (ionSelect)="categoria_Motor()">Motor</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  -->
+  
+  <ion-item>
+      <ion-button size="small" (click) = "categoria_Tecnologia()">Tecnología</ion-button>
+      <ion-button size="small" (click) = "categoria_Hogar()">Hogar</ion-button>
+      <ion-button size="small" (click) = "categoria_Inmobiliaria()">Inmobiliaria</ion-button>
+      <ion-button size="small" (click) = "categoria_Motor()">Motor </ion-button>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Precio</ion-label>
+    <ion-input type="number" placeholder="0"></ion-input>
+  </ion-item>
+
+  <!-- SI ES TIPO MOTOR-->
+  <ion-list *ngIf = "motor == true">
+    <ion-item>
+      <ion-label>Tipo de Vehículo</ion-label>
+      <ion-select placeholder="Selecciona Uno" okText="Okay" cancelText="Dismiss">
+        <ion-select-option value="coche">Coche</ion-select-option>
+        <ion-select-option value="moto">Moto</ion-select-option>
+      </ion-select>
+    </ion-item>        
+  </ion-list>
+  <ion-item *ngIf = "motor == true">
+    <ion-label>Km</ion-label>
+    <ion-input type="number" placeholder="0"></ion-input>
+  </ion-item>
+  <ion-item *ngIf = "motor == true">
+    <ion-label>Año</ion-label>
+    <ion-input type="number" placeholder="2019"></ion-input>
+  </ion-item>
+
+  <!-- SI ES TIPO INMOBILIARIA-->
+  <ion-item *ngIf = "inmobiliaria == true">
+    <ion-label>Metros Cuadrados</ion-label>
+    <ion-input type="number" placeholder="0"></ion-input>
+  </ion-item>
+  <ion-item *ngIf = "inmobiliaria == true">
+    <ion-label>Baños</ion-label>
+    <ion-input type="number" placeholder="0"></ion-input>
+  </ion-item>  
+  <ion-item *ngIf = "inmobiliaria == true">
+    <ion-label>Habitaciones</ion-label>
+    <ion-input type="number" placeholder="0"></ion-input>
+  </ion-item>
+  <ion-item *ngIf = "inmobiliaria == true">
+    <ion-label>Localidad</ion-label>
+    <ion-input placeholder="Introduzca Localidad"></ion-input>
+  </ion-item>
+
+  <!-- SI ES TIPO TECNOLOGIA-->
+  <ion-item *ngIf = "tecnologia == true">
+    <ion-label>Estado del artículo</ion-label>
+    <ion-select placeholder="Selecciona Uno" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="perfecto">Perfecto Estado</ion-select-option>
+      <ion-select-option value="usado">Usado</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button *ngIf = "categoria_Seleccionada == true" shape="round" fill="outline" float-right>Poner artículo a la venta</ion-button>
+  
+</ion-content>
