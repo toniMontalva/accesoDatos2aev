@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Detalle de artículos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{producto.nombre}}</ion-card-title>
+      <ion-card-subtitle>Precio: {{producto.precio}} €</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content *ngIf = "motor == true">
+      Categoria: {{producto.categoria}} <p></p>
+      {{producto.descripcion}} <p></p>
+      Tipo vehículo: {{producto.tipo_vehiculo}} <p></p>
+      Km: {{producto.km}} <p></p>
+      Año: {{producto.anyo}} <p></p>
+      <ion-button>Comprar</ion-button>
+    </ion-card-content>
+    <ion-card-content *ngIf = "inmobiliario == true">
+      Categoria: {{producto.categoria}} <p></p>
+      {{producto.descripcion}} <p></p>
+      Metros cuadrados: {{producto.metros_cuadrados}} <p></p>
+      Baños: {{producto.banyos}} <p></p>
+      Habitaciones: {{producto.habitaciones}} <p></p>
+      Localidad: {{producto.localidad}} <p></p>
+      <ion-button>Comprar</ion-button>
+    </ion-card-content>
+    <ion-card-content *ngIf = "tecnologico == true">
+      Categoria: {{producto.categoria}} <p></p>
+      {{producto.descripcion}} <p></p>  
+      Estado: {{producto.estado}} <p></p>
+      <ion-button>Comprar</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

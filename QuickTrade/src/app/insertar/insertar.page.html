@@ -4,23 +4,12 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Página Principal
+      Vender artículo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-
-  <section>
-    <ion-button expand="block" routerLink="/listado" routerDirection="forward">Ver artículos</ion-button>
-  </section>
-  
-  <section>
-    <ion-button expand="block" routerLink="/insertar" routerDirection="forward">Vender artículos</ion-button>
-  </section>
-
-  <!--
   <ion-item>
       <ion-label>Nombre</ion-label>
       <ion-input placeholder="Nombre del artículo" [(ngModel)]="nombre"></ion-input>
@@ -30,7 +19,6 @@
       <ion-label>Descripción</ion-label>
       <ion-input placeholder="Descripción del artículo" [(ngModel)]="descripcion"></ion-input>
   </ion-item>
--->
 
   <!--
   <ion-list>      
@@ -46,7 +34,6 @@
   </ion-list>
   -->
   
-  <!--
   <ion-item>
       <ion-button size="small" (click) = "categoria_Tecnologia()">Tecnología</ion-button>
       <ion-button size="small" (click) = "categoria_Hogar()">Hogar</ion-button>
@@ -58,10 +45,8 @@
     <ion-label>Precio</ion-label>
     <ion-input type="number" placeholder="0" [(ngModel)]="precio"></ion-input>
   </ion-item>
-  -->
 
   <!-- SI ES TIPO MOTOR-->
-  <!--
   <ion-list *ngIf = "motor == true">
     <ion-item>
       <ion-label>Tipo de Vehículo</ion-label>
@@ -79,10 +64,8 @@
     <ion-label>Año</ion-label>
     <ion-input type="number" placeholder="2019" [(ngModel)]="anyo"></ion-input>
   </ion-item>
-  -->
 
   <!-- SI ES TIPO INMOBILIARIA-->
-  <!--
   <ion-item *ngIf = "inmobiliaria == true">
     <ion-label>Metros Cuadrados</ion-label>
     <ion-input type="number" placeholder="0" [(ngModel)]="metros_cuadrados"></ion-input>
@@ -99,10 +82,8 @@
     <ion-label>Localidad</ion-label>
     <ion-input placeholder="Introduzca Localidad" [(ngModel)]="localidad"></ion-input>
   </ion-item>
-  -->
 
   <!-- SI ES TIPO TECNOLOGIA-->
-  <!--
   <ion-item *ngIf = "tecnologia == true">
     <ion-label>Estado del artículo</ion-label>
     <ion-select placeholder="Selecciona Uno" [(ngModel)]="estado" okText="Okay" cancelText="Dismiss">
@@ -125,7 +106,7 @@
         </ion-card-header>
       </ion-card>
     </ion-item>
-  </ion-list>
-  -->
+  </ion-list>    
   
 </ion-content>
+

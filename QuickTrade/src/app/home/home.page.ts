@@ -8,7 +8,7 @@ import { IArticulo, ITecnologia, IInmobiliaria, IMotor } from '../interfaces';
 })
 export class HomePage {
 
-  hogar : boolean = false;
+  /*hogar : boolean = false;
   motor: boolean = false;
   inmobiliaria : boolean = false;
   tecnologia : boolean = false;
@@ -29,11 +29,11 @@ export class HomePage {
   km : number;
   anyo : number;
 
-  articulos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
+  articulos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];*/
 
   constructor() {}
 
-  categoria_Hogar() : void {
+  /*categoria_Hogar() : void {
     if(this.inmobiliaria == true || this.motor == true || this.tecnologia == true){
       this.inmobiliaria = false;
       this.motor = false;
@@ -119,6 +119,6 @@ export class HomePage {
     }
 
     console.log("Añadido articulo");    
-
-  }
+  
+  } */
 }
