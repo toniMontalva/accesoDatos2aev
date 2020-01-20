@@ -1,6 +1,8 @@
 {
   "name": "QuickTrade",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "bb176afe"
 }

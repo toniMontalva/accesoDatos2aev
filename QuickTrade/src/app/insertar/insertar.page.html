@@ -92,21 +92,7 @@
     </ion-select>
   </ion-item>
 
-  <ion-button color="success" *ngIf = "categoria_Seleccionada == true" (click)="insertar()" shape="round" expand="block">Poner artículo a la venta</ion-button>
-
-  <ion-list>
-    <ion-item *ngFor="let art of articulos">
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>{{art.nombre}} ({{art.precio}}) €</ion-card-title>
-          <ion-card-content>
-            <ion-label> Descripción: </ion-label>
-            {{art.descripcion}}
-          </ion-card-content>
-        </ion-card-header>
-      </ion-card>
-    </ion-item>
-  </ion-list>    
+  <ion-button color="success" *ngIf = "categoria_Seleccionada == true" (click)="insertar()" shape="round" expand="block">Poner artículo a la venta</ion-button>   
   
 </ion-content>
 

@@ -1,40 +1,41 @@
 import { Injectable } from '@angular/core';
 import { IArticulo, ITecnologia, IInmobiliaria, IMotor } from '../interfaces';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable()
 
 export class ProductoService {
 
-    productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [
-        {
-            "id" : 1,
-            "nombre" : "Motocicleta 23",
-            "precio" : 12,
-            "descripcion" : "Descripción prueba",
-            "categoria" : "Motor",
-            "tipo_vehiculo" : "Moto",
-            "km" : 1000,
-            "anyo" : 2018
-        }, 
-        {
-            "id" : 2,
-            "nombre" : "Móvil",
-            "precio" : 32,
-            "descripcion" : "Descripción prueba",
-            "categoria" : "Tecnologia",
-            "estado" : "Perfecto estado"
-        }
-    ];
+    productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
     
-    insertarProducto() {
+    constructor(private _db: AngularFireDatabase){
+
+    }
+
+    insertarProducto(producto : (IArticulo | ITecnologia | IInmobiliaria | IMotor)) {
         // Por implementar
+        let ref = this._db.database.ref("productos");
+        ref.push(producto);
     }
 
-    getProductos() : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] {
-        return this.productos;
+    getProductos() : firebase.database.Reference {
+        let ref = this._db.database.ref("productos");
+        return ref;
     }
 
-    getProductosPorID(id : number) :  (IArticulo | ITecnologia | IInmobiliaria | IMotor) {
+    guardarProductos() {
+        let ref = this.getProductos();
+
+        ref.once("value", snapshot => {
+            snapshot.forEach(child => {
+              let value = child.val();
+              this.productos.push(value);
+            })
+          })
+    }
+
+    getProductosPorID(id : number) :  (IArticulo | ITecnologia | IInmobiliaria | IMotor) {        
+        this.guardarProductos();
         return this.productos.find(x => x.id == id);
     }
 }

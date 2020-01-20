@@ -12,6 +12,7 @@ export class ProductDetailsPage implements OnInit {
 
   id : number;
   producto : (IArticulo | IInmobiliaria | IMotor | ITecnologia);
+  hogar : boolean = false;
   tecnologico : boolean = false;
   motor : boolean = false;
   inmobiliario : boolean = false;  
@@ -21,12 +22,15 @@ export class ProductDetailsPage implements OnInit {
   ngOnInit() {
     this.id = +this._activatedRoute.snapshot.paramMap.get('id');
     this.producto = this._productoService.getProductosPorID(this.id);
+
     if(this.producto.categoria.toLowerCase() == "motor"){
       this.motor = true;
     } else if(this.producto.categoria.toLowerCase() == "tecnologia") {
       this.tecnologico = true;
-    } else {
+    } else if(this.producto.categoria.toLowerCase() == "inmobiliaria") {
       this.inmobiliario = true;
+    } else {
+      this.hogar = true;
     }
   }
 

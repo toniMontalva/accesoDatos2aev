@@ -23,6 +23,11 @@
       Año: {{producto.anyo}} <p></p>
       <ion-button>Comprar</ion-button>
     </ion-card-content>
+    <ion-card-content *ngIf = "hogar == true">
+      Categoria: {{producto.categoria}} <p></p>
+      {{producto.descripcion}} <p></p>
+      <ion-button>Comprar</ion-button>
+    </ion-card-content>
     <ion-card-content *ngIf = "inmobiliario == true">
       Categoria: {{producto.categoria}} <p></p>
       {{producto.descripcion}} <p></p>
