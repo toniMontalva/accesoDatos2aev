@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { IArticulo, ITecnologia, IInmobiliaria, IMotor } from '../interfaces';
 
 @Component({
   selector: 'app-home',

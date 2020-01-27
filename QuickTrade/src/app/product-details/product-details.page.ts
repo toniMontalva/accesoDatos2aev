@@ -23,11 +23,11 @@ export class ProductDetailsPage implements OnInit {
     this.id = +this._activatedRoute.snapshot.paramMap.get('id');
     this.producto = this._productoService.getProductosPorID(this.id);
 
-    if(this.producto.categoria.toLowerCase() == "motor"){
+    if(this.producto.categoria.toLowerCase() === "motor"){
       this.motor = true;
-    } else if(this.producto.categoria.toLowerCase() == "tecnologia") {
+    } else if(this.producto.categoria.toLowerCase() === "tecnologia") {
       this.tecnologico = true;
-    } else if(this.producto.categoria.toLowerCase() == "inmobiliaria") {
+    } else if(this.producto.categoria.toLowerCase() === "inmobiliaria") {
       this.inmobiliario = true;
     } else {
       this.hogar = true;
