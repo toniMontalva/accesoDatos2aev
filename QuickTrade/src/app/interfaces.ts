@@ -1,5 +1,6 @@
 export interface IArticulo {
     "id" : number,
+    "id_usuario" : string,
     "nombre" : string,
     "precio" : number,
     "descripcion" : string,
@@ -21,4 +22,10 @@ export interface IMotor extends IArticulo {
     "tipo_vehiculo" : string,
     "km" : number,
     "anyo" : number
+}
+
+export interface IUsuario {
+    "id" : number,
+    "nombreUsuario" : string,
+    "correo" : string
 }

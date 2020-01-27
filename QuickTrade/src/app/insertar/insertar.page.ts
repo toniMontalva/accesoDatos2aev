@@ -38,15 +38,7 @@ export class InsertarPage implements OnInit {
   constructor(private _productoService : ProductoService) { }
 
   ngOnInit() {
-    this.numElementos = 0;
-    let ref = this._productoService.getProductos();
-    
-    ref.once("value", snapshot => {
-      snapshot.forEach(child => {
-        this.numElementos++;
-      })
-    })
-
+    this.numElementos = this._productoService.saveUniqueId();
   }
 
   categoria_Hogar() : void {
@@ -93,6 +85,7 @@ export class InsertarPage implements OnInit {
     if(this.hogar){
        let artHogar : IArticulo = {
           "id" : this.numElementos + 1,
+          "id_usuario" : this._productoService.usuarioKey,
           "nombre" : this.nombre,
           "precio" : this.precio,
           "descripcion" : this.descripcion,
@@ -102,6 +95,7 @@ export class InsertarPage implements OnInit {
     } else if (this.tecnologia){
         let artTecnologia : ITecnologia = {
           "id" : this.numElementos + 1,
+          "id_usuario" : this._productoService.usuarioKey,
           "nombre" : this.nombre,
           "precio" : this.precio,
           "descripcion" : this.descripcion,
@@ -112,6 +106,7 @@ export class InsertarPage implements OnInit {
     } else if(this.inmobiliaria){
         let artInmobiliaria : IInmobiliaria = {
           "id" : this.numElementos + 1,
+          "id_usuario" : this._productoService.usuarioKey,
           "nombre" : this.nombre,
           "precio" : this.precio,
           "descripcion" : this.descripcion,
@@ -125,6 +120,7 @@ export class InsertarPage implements OnInit {
     } else if(this.motor) {
         let artMotor : IMotor = {
           "id" : this.numElementos + 1,
+          "id_usuario" : this._productoService.usuarioKey,
           "nombre" : this.nombre,
           "precio" : this.precio,
           "descripcion" : this.descripcion,
@@ -133,7 +129,7 @@ export class InsertarPage implements OnInit {
           "anyo" : this.anyo,
           "categoria" : "motor"     
         };
-        this._productoService.insertarProducto(artMotor);
+        this._productoService.insertarProducto(artMotor);        
     }
   }
 }
