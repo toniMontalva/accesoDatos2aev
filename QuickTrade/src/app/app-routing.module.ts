@@ -38,6 +38,10 @@ const routes: Routes = [
   {
     path: 'modify-product/:id',
     loadChildren: () => import('./modify-product/modify-product.module').then( m => m.ModifyProductPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 

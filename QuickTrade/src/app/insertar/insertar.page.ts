@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IArticulo, ITecnologia, IInmobiliaria, IMotor } from '../interfaces';
 import { ProductoService } from '../services/producto.service';
+import { ToastController } from '@ionic/angular';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class InsertarPage implements OnInit {
 
   numElementos : number;
 
-  constructor(private _productoService : ProductoService) { }
+  constructor(private _productoService : ProductoService, public toastController: ToastController) { }
 
   ngOnInit() {
     this.numElementos = this._productoService.saveUniqueId();
@@ -131,5 +132,16 @@ export class InsertarPage implements OnInit {
         };
         this._productoService.insertarProducto(artMotor);        
     }
+    // hacer toast
+    this.presentToastProductListing();
   }
+
+  async presentToastProductListing() {
+    const toast = await this.toastController.create({
+      message: 'Articulo puesto a la venta',
+      duration: 2000
+    });
+    toast.present()
+  }
+
 }

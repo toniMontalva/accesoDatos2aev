@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../services/producto.service';
 import { IArticulo, IInmobiliaria, IMotor, ITecnologia } from '../interfaces';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-modify-product',
@@ -34,7 +35,17 @@ export class ModifyProductPage implements OnInit {
   km : number;
   anyo : number;
 
-  constructor(private _productoService : ProductoService, private _activatedRoute: ActivatedRoute) { }
+  constructor(private _productoService : ProductoService, private _activatedRoute: ActivatedRoute, public toastController: ToastController) { }
+
+
+  async presentToastModifiedProduct() {
+    const toast = await this.toastController.create({
+      message: 'Producto modificado',
+      duration: 2000
+    });
+    toast.present()
+  }
+
 
   ngOnInit() {
     this.id = +this._activatedRoute.snapshot.paramMap.get('id');
@@ -57,29 +68,12 @@ export class ModifyProductPage implements OnInit {
     //this.key = this._productoService.getKeyOfProduct(this.id);
   }
 
-  modificarProducto() {    
-    /*let ref = this._productoService.getProductos();
-    this.key = null;
-    ref.once("value", snapshot => {
-      snapshot.forEach(child => {
-        let idUser = child.val().id;
-        console.log("id recuperado " + idUser);
-        console.log("y producto id es " + this.producto.id);
-
-        if(idUser === this.producto.id) {
-            this.key = child.key;
-        }
-        console.log("la key es " + this.key);
-      })
-    })*/    
+  modificarProducto() {        
     this._productoService.getKeyOfProductAsync(this.producto.id).then((key) => {
-      this.key = key;
-    
+      this.key = key;    
       this.producto.descripcion = this.descripcion;
       this.producto.nombre = this.nombre;
       this.producto.precio = this.precio;
-
-      console.log("la key es " + this.key + " y la categoria " + this.producto.categoria);
 
       if(this.producto.categoria == "hogar"){
         let ref = this._productoService.getProductos();
@@ -132,5 +126,6 @@ export class ModifyProductPage implements OnInit {
             })
       }
     })
+    this.presentToastModifiedProduct();
   }
 }

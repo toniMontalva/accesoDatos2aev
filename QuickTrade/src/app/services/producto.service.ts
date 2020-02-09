@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IArticulo, ITecnologia, IInmobiliaria, IMotor, IUsuario } from '../interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
 
 @Injectable()
 
@@ -9,10 +11,9 @@ export class ProductoService {
     productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
     productosByUser : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
     maxId : number;
-    usuario : IUsuario;
     usuarioKey : string;
     
-    constructor(private _db: AngularFireDatabase){
+    constructor(private _db: AngularFireDatabase, public afAuth: AngularFireAuth){
 
     }
 
@@ -57,18 +58,13 @@ export class ProductoService {
        this.productosByUser = this.productos.filter(x => x.id_usuario === this.usuarioKey);
     }
 
-    getLoggedUser(user_name : string) {
-        let ref = this._db.database.ref("usuarios");
-        this.usuarioKey = null;
-
-        ref.once("value", snapshot => {
-            snapshot.forEach(child => {
-                let nomUser = child.val().nombreUsuario;                
-                if(user_name === nomUser) {
-                    this.usuario = child.val();
-                    this.usuarioKey = child.key;                       
-                }
-            })
+    getLoggedUserFirebase() {
+        this.afAuth.auth.onAuthStateChanged((user) => {
+            if(user) {
+                this.usuarioKey = user.uid;
+            } else {
+                // nada
+            }
         })
     }
 

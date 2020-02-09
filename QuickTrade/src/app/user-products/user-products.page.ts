@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IArticulo, ITecnologia, IMotor, IInmobiliaria} from '../interfaces';
 import { ProductoService } from '../services/producto.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-products',
@@ -11,7 +12,7 @@ export class UserProductsPage implements OnInit {
 
   productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
 
-  constructor(private _productoService : ProductoService) { }
+  constructor(private _productoService : ProductoService, public toastController: ToastController) { }
 
   ngOnInit() {
     this._productoService.productosByUser = [];
@@ -45,7 +46,16 @@ export class UserProductsPage implements OnInit {
 
   borrarArticulo(id : number) {
     this._productoService.borrarArticulo(id);
+    this.presentToastProductListing();
     this.refrescarArray();
+  }
+
+  async presentToastProductListing() {
+    const toast = await this.toastController.create({
+      message: 'Articulo borrado',
+      duration: 2000
+    });
+    toast.present()
   }
 
 }
