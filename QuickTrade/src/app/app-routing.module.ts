@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },  {
+    path: 'search-product',
+    loadChildren: () => import('./search-product/search-product.module').then( m => m.SearchProductPageModule)
   }
+
 ];
 
 @NgModule({

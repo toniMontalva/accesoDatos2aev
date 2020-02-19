@@ -18,6 +18,11 @@ export interface IInmobiliaria extends IArticulo {
     "localidad" : string
 }
 
+export interface IBusqueda {
+    "texto": string,
+    "id": string
+}
+
 export interface IMotor extends IArticulo {
     "tipo_vehiculo" : string,
     "km" : number,

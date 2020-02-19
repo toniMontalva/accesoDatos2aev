@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IArticulo, ITecnologia, IInmobiliaria, IMotor, IUsuario } from '../interfaces';
+import { IArticulo, ITecnologia, IInmobiliaria, IMotor, IBusqueda } from '../interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
@@ -10,8 +10,10 @@ export class ProductoService {
 
     productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
     productosByUser : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
+    productosFiltradosBusqueda : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
     maxId : number;
     usuarioKey : string;
+
     
     constructor(private _db: AngularFireDatabase, public afAuth: AngularFireAuth){
 
@@ -23,9 +25,19 @@ export class ProductoService {
         this.guardarProductos();
     }
 
+    insertarBusqueda(busqueda: IBusqueda) {
+        let ref = this._db.database.ref("busquedas");        
+        ref.push(busqueda);        
+    }
+
     getProductos() : firebase.database.Reference {
         let ref = this._db.database.ref("productos");
         return ref;
+    }
+
+    getProductosPorNombre(nombre: string) {
+        this.productosFiltradosBusqueda = [];
+        this.productosFiltradosBusqueda = this.productos.filter(x => x.nombre.toLowerCase().includes(nombre));
     }
 
     guardarProductos() {
