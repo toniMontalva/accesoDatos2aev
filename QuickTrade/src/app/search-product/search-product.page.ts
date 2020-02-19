@@ -11,7 +11,6 @@ export class SearchProductPage implements OnInit {
 
   valorIntroducido: string = "";
   productos : (IArticulo | ITecnologia | IInmobiliaria | IMotor)[] = [];
-  busqueda : IBusqueda;
   constructor(private _productoService : ProductoService) { }
 
   ngOnInit() {
@@ -20,9 +19,7 @@ export class SearchProductPage implements OnInit {
   buscarProducto() {
       this._productoService.getProductosPorNombre(this.valorIntroducido);
       this.productos = this._productoService.productosFiltradosBusqueda;      
-      this.busqueda.id = this._productoService.usuarioKey;
-      this.busqueda.texto = this.valorIntroducido;
-      this._productoService.insertarBusqueda(this.busqueda);
+      this._productoService.insertarBusqueda(this.valorIntroducido);
       this.valorIntroducido = "";
   }
 

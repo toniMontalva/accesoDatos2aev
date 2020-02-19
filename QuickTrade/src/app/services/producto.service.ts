@@ -25,9 +25,37 @@ export class ProductoService {
         this.guardarProductos();
     }
 
-    insertarBusqueda(busqueda: IBusqueda) {
-        let ref = this._db.database.ref("busquedas");        
-        ref.push(busqueda);        
+    comprobar(busqueda: string) : boolean {
+        var existe = false;
+        let ref = this._db.database.ref("busquedas");
+        ref.once("value", snapshot => {
+            snapshot.forEach(child => {
+              let value = child.val();
+              if(value.userId === this.usuarioKey) {
+                  existe = true;
+                  var hopperRef = ref.child(ref.key);
+                    hopperRef.update({
+                        "texto": busqueda,
+                        "idUser": this.usuarioKey
+                    });
+              }
+            })
+          })
+
+        return existe;
+    }
+    insertarBusqueda(busqueda: string) {
+        let ref = this._db.database.ref("busquedas");
+        var comprobarUser = this.comprobar(busqueda);
+        if(!comprobarUser) {
+            var obj = {
+                "texto": busqueda,
+                "idUser": this.usuarioKey
+            }
+            ref.push(obj);
+        } else {
+
+        }
     }
 
     getProductos() : firebase.database.Reference {
